@@ -26,3 +26,4 @@ def login_user(db, data):
         return None
     
     token = create_access_token({"sub": str(user.user_id)})
+    return token
