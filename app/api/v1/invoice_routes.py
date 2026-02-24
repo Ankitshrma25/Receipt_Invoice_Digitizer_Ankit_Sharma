@@ -2,9 +2,11 @@ from fastapi import APIRouter, UploadFile, File
 import os
 import shutil
 from app.services.ocr_service import extract_text_from_image
+from app.services.llm_service import extract_invoice_data
 
 router = APIRouter(prefix="/invoice", tags=["invoice"])
 
+# Upload Route
 @router.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
 
@@ -16,10 +18,13 @@ async def upload_file(file: UploadFile = File(...)):
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    # OCR service
-    extracted_text = extract_text_from_image(file_path)
+    # Extarct raw data using OCR service
+    raw_text = extract_text_from_image(file_path)
+
+    # LLM service to structure raw data
+    structure_data = extract_invoice_data(raw_text)
 
     return {
         "filename": file.filename,
-        "extracted_text": extracted_text
+        "extracted_text": structure_data
     }
