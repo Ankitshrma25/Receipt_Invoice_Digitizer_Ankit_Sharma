@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.db.session import engine, Base
 from app.api.v1.auth_routes import router as auth_router
+from app.api.v1.invoice_routes import router as invoice_router
 from app import models
 
 
@@ -18,3 +19,4 @@ def home():
 
 # auth router
 app.include_router(auth_router)
+app.include_router(invoice_router)

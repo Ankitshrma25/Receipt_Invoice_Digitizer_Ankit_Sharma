@@ -2,6 +2,9 @@ fastapi
 uvicorn
 pydantic
 
+# Email validator
+pydantic[email]
+
 # authentication
 python-jose[cryptography]
 passlib[bcrypt]
@@ -9,3 +12,6 @@ python-dotenv
 
 # database
 sqlalchemy
+
+# File upload
+python-multipart
