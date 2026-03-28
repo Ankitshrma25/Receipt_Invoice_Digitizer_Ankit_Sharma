@@ -1,5 +1,20 @@
+# Node
+node_modules/
+
+# Python
 venv/
-.env
 __pycache__/
 *.pyc
+
+# Environment files
+.env
+.env.*
+*.env
+
+# Uploads / user data
+uploads/
+
+# OS / misc
+.DS_Store
+Thumbs.db
 app.db
